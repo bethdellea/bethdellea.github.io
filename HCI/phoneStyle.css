@@ -1,0 +1,95 @@
+@charset "utf-8";
+
+*{
+    font-family: 'Montserrat', sans-serif;
+    font-size: 15pt;
+}
+
+#phone{
+    margin-left: auto;
+    margin-right: auto;
+    width:25em;
+}
+
+#displayBox {
+    height: 2.5em;
+    background: -webkit-linear-gradient(#888, #aaa); /* For Safari 5.1 to 6.0 */
+	background: -o-linear-gradient(#888, #aaa); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(#888, #aaa); /* For Firefox 3.6 to 15 */
+	background: linear-gradient(#888, #aaa); /* Standard syntax */	  
+    padding: .5em;
+    color: #eee;
+    text-align: center;
+    margin-bottom: .8em;
+    border-radius: 5px;
+}
+
+#buttonsArea{
+    margin-left: 7em;
+    position: relative;
+    top: 25%;
+    width:50%;
+    height: 50%;
+}
+
+.keypad {
+    width: 1.2em;
+    text-align: center;
+    float: left;
+    padding: .8em;
+    cursor: pointer;
+    background: -webkit-linear-gradient(#999, #bbb); /* For Safari 5.1 to 6.0 */
+	background: -o-linear-gradient(#999, #bbb); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(#999, #bbb); /* For Firefox 3.6 to 15 */
+	background: linear-gradient(#999, #bbb); /* Standard syntax */	  
+    margin: .4em;
+    border-radius: 8px;
+    box-shadow: .35em .41em .35em #888888;
+}
+
+#key1{
+    clear: both;
+}
+
+#key4{
+    clear: both;
+}
+
+#key7{
+    clear: both;
+}
+
+#key10 {
+    clear: both;  
+    color: #6EFF70;
+    font-weight: bold;
+}
+
+.keypad:hover {
+    cursor: pointer;
+    background: -webkit-linear-gradient(#999, #777); /* For Safari 5.1 to 6.0 */
+	background: -o-linear-gradient(#999, #777); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(#999, #777); /* For Firefox 3.6 to 15 */
+	background: linear-gradient(#999, #777); /* Standard syntax */	  
+    box-shadow: .35em .41em .35em #777;
+    color: white; 
+}
+
+.keypad:active{
+    cursor: pointer;
+    background: -webkit-linear-gradient(#555, #666); /* For Safari 5.1 to 6.0 */
+	background: -o-linear-gradient(#555, #666); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(#555, #666); /* For Firefox 3.6 to 15 */
+	background: linear-gradient(#555, #666); /* Standard syntax */	  
+    box-shadow: .35em .31em .35em #444;
+    color: #fffe50; 
+}
+
+
+#key12{
+    color: #ff0000;
+}
+
+.temp{
+    color: #bbb;
+}
