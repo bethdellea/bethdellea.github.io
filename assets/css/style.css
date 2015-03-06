@@ -398,57 +398,8 @@ h1, h2, h3, h4, h5, h6 {
     clear: both;
 }
 
-.commentbox{
-    overflow: scroll;
+#middle{
+    width: 77%;
+    margin-left: auto;
+    margin-right: auto;
 }
-/* I want this to impact the currently selected tab, but it's not happening.
-
-background-image: 
-    repeating-linear-gradient(
-      45deg,
-      #0ff,
-      #0ff 10px,
-      white 10px,
-      white 20px 
-    ) !important;
-*/
-
-/* **************************** PARSLEY VALIDATOR CSS STUFF ***************** */
-
-input.parsley-success,
-select.parsley-success,
-textarea.parsley-success {
-  color: #468847;
-  background-color: #DFF0D8;
-  border: 1px solid #D6E9C6;
-}
-
-input.parsley-error,
-select.parsley-error,
-textarea.parsley-error {
-  color: #B94A48;
-  background-color: #F2DEDE;
-  border: 1px solid #EED3D7;
-}
-
-.parsley-errors-list {
-  margin: 2px 0 3px;
-  padding: 0;
-  list-style-type: none;
-  font-size: 0.9em;
-  line-height: 0.9em;
-  opacity: 0;
-  -moz-opacity: 0;
-  -webkit-opacity: 0;
-
-  transition: all .3s ease-in;
-  -o-transition: all .3s ease-in;
-  -moz-transition: all .3s ease-in;
-  -webkit-transition: all .3s ease-in;
-}
-
-.parsley-errors-list.filled {
-  opacity: 1;
-}
-
-
