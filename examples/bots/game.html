@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Robots Destroying Cabages</title>
+
+    <!-- link in style sheets -->
+    <link href="css/botStyle.css" type="text/css" rel="stylesheet" />
+      
+    <!-- include JS scripts -->
+    <script src = "../../js/jquery-1.11.0.min.js"></script>
+	<script src="js/modernizr.js"></script>
+	<script src="js/rockEm.js"></script>
+
+      <link rel="icon" 
+      type="image/png" 
+      href="img/favicon3.png">
+      
+</head>
+
+<body>
+
+    <h1 class="center-text fontPizza ">Robots Destroying Cabbages</h1>
+    
+    <div class="changeThings">
+         <form name = "userInput">
+        <p><em>Choose Your Color: </em><select  name="colors">
+                    <option value=1>Turquoise</option>
+                    <option value=5>Yellow</option>
+                    <option value=9 >White</option>
+                    <option value=13>Blue</option>
+                    </select></p>
+        
+        <p><em>Level:</em><input type="radio" name="lvl" value=1 checked>Easy &emsp;&ensp; <input type="radio" name="lvl" value=2>Medium &emsp;&ensp; <input type="radio" name="lvl" value=3>Hard</p>
+        <p><em>Version:</em><input type="radio" name="type" value="norm" checked>Traditional &emsp; <input type="radio" name="type" value="cs">Mystery</p>
+    <h2> <button type="button" id="start">Start the Match!</button></h2>
+        </form>
+             </div>
+        
+    
+    <div class="canvasArea">
+    <!-- Canvas -->
+    <canvas id="myCanvas" width="600" height="400" class="center-block">
+        Your browser doesn't support Canvas.
+    </canvas>    
+    <!-- ^ End Canvas -->
+    </div>
+    <!-- Controls -->
+    <br><br>
+    <div id="canvasControls">
+        
+        <p id="scoreKeeper" class="fontbo" ></p>
+
+        
+    </div>
+    
+    
+    <!-- ^ End Controls -->
+
+      	
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Life in Motion</title>
+
+    <!-- link in style sheets -->
+    <link href='https://fonts.googleapis.com/css?family=Dosis:400,500,600' rel='stylesheet' type='text/css'>
+    <link href="css/animated.css" type="text/css" rel="stylesheet" />
+      
+    <!-- include JS scripts -->
+	<script src="js/modernizr.js"></script>
+	<script src="js/animationArt.js"></script>
+
+</head>
+
+<body>
+<div class="container">
+    <div class="lilColumn">
+    
+        <div id="buttonBox">
+            <button id="addFish">Add a Fish!</button><br>
+            <button id="feedFish">Feed the Fish!</button><br>
+            <button id="remFish">Remove a Fish!</button>
+        </div><!-- buttonBox-->
+    
+    </div> <!-- lil column -->
+    
+    <div class="bigColumn">
+        <!-- Canvas -->
+        <canvas id="myCanvas" width="500" height="500" class="center-block">
+            Your browser doesn't support Canvas.
+        </canvas>    
+        <!-- ^ End Canvas -->
+
+        <!-- Controls -->
+        <br><br>
+        <div id="canvasControls">
+        </div>
+        <!-- ^ End Controls -->
+
+    </div> <!-- big column -->
+    
+    <div class="lilColumn">
+      	<div id="justify">
+        <h2>Life in Motion</h2>
+            <h3>Images on Canvas</h3>
+            <h4>November 2015</h4>
+            <h5>Beth Dellea</h5>
+        <p>This piece says a lot about the transient nature of our lives.</p>
+            <p>The fish swim past each other without notice, not a care for the hopes or dreams of the other fish; the only interactions the fish have that seem to matter are with their food and the walls.</p>
+            <p>In a similar manner, we go through life only caring for the things that improve our own lives and only noticing our limitations when we are forced to deal with them.</p>
+            <p>The background for this piece is a waiting room, as those serve as transient, even liminal spaces in our day to day lives. We pass through, but no one ever pays attention to 100% of the things that happen to them in waiting rooms. Who knows who we'd be as people if we were just a little bit more aware of the spaces of transition in our lives.</p>
+            <p>It may seem calming to watch the fish swim back and forth, but once we see the connections between ourselves and these creatures, the peace could easily shift into anxiety and stress. The fish may not be able to think beyond the world of themselves and their tank, but we are.</p>
+        </div> <!-- justify -->
+       
+        <!-- Font Fix Section -->
+        <!-- We need to use each font on the page to use it on the canvas -->
+        <div id="fontFix">
+           <p> <span class="font-Orbitron">Orbitron</span>
+               <span class="font-Special-Elite">Special Elite</span></p>
+        </div>
+        <!-- ^ End FontFix -->
+
+    
+    </div> <!-- lil column -->
+    
+    </div><!--container-->
+</body>
+</html>

@@ -1,112 +1,576 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class="no-js">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Elizabeth Dellea</title>
     <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="shortcut icon" href="initialsLogoSmall.png">
-
-    <title>Beth Dellea - Lab 7</title>
-
-    <!-- Bootstrap core CSS -->
-    <link href="assets/css/bootstrap.css" rel="stylesheet">
-
-    <!-- Custom styles for this template -->
-    <link href="assets/css/style.css" rel="stylesheet">
-    <link href="assets/css/font-awesome.min.css" rel="stylesheet">
-
-    <!-- Just for debugging purposes. Don't actually copy this line! -->
-    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="all,follow">
+    <!-- Bootstrap and Font Awesome css-->
+    <!-- we use cdn but you can also include local files located in css directory-->
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/font-awesome-animation.min.css">
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <!-- Google fonts - Montserrat for headings, Cardo for copy-->
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Montserrat:400,700|Cardo:400,400italic,700">
+    <!-- onepage scroll stylesheet-->
+    <link rel="stylesheet" href="css/onepage-scroll.css">
+    <!-- theme stylesheet-->
+    <link rel="stylesheet" href="css/style.default.css" id="theme-stylesheet">
+    <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="css/custom.css">
+    <!-- Favicon-->
+    <link rel="shortcut icon" href="img/favicon.png">
+    <!-- Tweaks for older IEs--><!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
   </head>
-
   <body>
-
-    <!-- Static navbar -->
-    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-           <a class="navbar-brand" href="index.html"><img src="initialsLogoSmall.png" alt="overlapping letters: B and D">Beth Dellea</a>
-        </div>
-       <div class="navbar-collapse collapse">
-          <ul class="nav navbar-nav navbar-right">
-            <li class="active"><a href="index.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="contact.html">Contact Me</a></li>
-          </ul>
-        </div><!--/.nav-collapse -->
+    <div class="wrapper">
+      <div class="main"> 
+        <!-- page 1-->
+        <section id="page1">
+          <div class="overlay"></div>
+          <div class="content">
+            <div class="container clearfix">
+              <div class="row">
+                <div class="col-md-8 col-md-offset-2 col-sm-12">
+                  <p class="italic">I work well and try too hard.</p>
+                  <h1>Elizabeth Dellea</h1>
+                  <p class="italic">Media Emerger.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="icon faa-float animated"><i class="fa fa-angle-double-down"></i></div>
+        </section>
+        <!-- page 2-->
+        <section id="page2">
+          <div class="content">
+            <div class="container clearfix">
+              <div class="row">
+                <div class="col-md-7"> 
+                  <h2 class="heading">About me</h2>
+                    <p class="lead">Ithaca College Class of 2016, B.S. in Emerging Media, Media Computation Concentration, Minor in Web Programming</p>
+                  <p>I have always loved logic and puzzle games, and programming takes those games to a level where I have exponentially more potential solutions. I enjoy a more interface-focused approach, with attention to audience needs and expected outcomes. 
+                      <br>
+                      <br>
+                      I care deeply about women and gender minorities in STEM fields and making classrooms and workplaces more welcoming and supportidve environments for them.</p>
+                    <p><b>Languages and Libraries:</b> Python, Java, C++, HTML5, CSS3, JavaScript, JQuery, Bootstrap, Git, OpenCV, Java Play!, Kivy</p>
+                </div>
+                <div class="col-md-4 col-md-offset-1 col-sm-4 col-sm-offset-4 col-xs-6 col-xs-offset-3">
+                  <p><img src="img/me3.jpg" alt="" class="img-responsive img-circle"></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <!-- page 3 - class section-gray adds gray background-->
+       
+        <section id="page4">
+          <div class="content">
+            <div class="container clearfix">
+              <div class="row">
+                <div class="col-md-12">
+                  <h2 class="heading">Portfolio</h2>
+                  <p class="text-center">A sampling of my projects.</p>
+                  <div class="row">
+                    <div class="col-xs-6 col-sm-3">
+                      <div class="box"><a href="#" data-toggle="modal" data-target="#mod1" title=""><img src="img/ctall2.png" alt="" class="img-responsive"></a></div>
+                    </div>
+                    <div class="col-sm-3 col-xs-6">
+                      <div class="box"><a href="#" data-toggle="modal" data-target="#mod2" title=""><img src="img/okc3.jpg" alt="" class="img-responsive"></a></div>
+                    </div>
+                    <div class="col-sm-3 col-xs-6">
+                      <div class="box"><a href="#" data-toggle="modal" data-target="#mod3" title=""><img src="img/bot2.PNG" alt="" class="img-responsive"></a></div>
+                    </div>
+                      <div class="col-sm-3 col-xs-6">
+                      <div class="box"><a href="#" data-toggle="modal" data-target="#mod4" title=""><img src="img/dndchar.PNG" alt="" class="img-responsive"></a></div>
+                    </div>
+                  </div>
+                    
+                    
+                  <div class="row">
+                    <div class="col-sm-3 col-xs-6">
+                      <div class="box"><a href="#" data-toggle="modal" data-target="#mod5" title=""><img src="img/ada.png" alt="" class="img-responsive"></a></div>
+                    </div>
+                    <div class="col-sm-3 col-xs-6">
+                      <div class="box"><a href="#" data-toggle="modal" data-target="#mod6" title=""><img src="img/hvz.PNG" alt="" class="img-responsive"></a></div> <!-- turn it into the hvz thing somehow --- realllly not sure what a good img would be -->
+                    </div>
+                    <div class="col-sm-3 col-xs-6">
+                      <div class="box"><a href="#" data-toggle="modal" data-target="#mod7" title=""><img src="img/tri.PNG" alt="" class="img-responsive"></a></div> <!-- turn it into the hvz thing somehow --- realllly not sure what a good img would be -->
+                    </div>
+                    <div class="col-sm-3 col-xs-6">
+                      <div class="box"><a href="#" data-toggle="modal" data-target="#mod8" title=""><img src="img/ggj1.PNG" alt="" class="img-responsive"></a></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>              
+          </div>
+        </section>
+          
+                  
+          
+          
+        <!-- page 5-->
+        <section id="page5" class="section-gray">
+          <div class="content">
+            <div class="container clearfix">
+              <div class="row">
+                <div class="col-md-12">
+                  <h2 class="heading" id="workHeading">Work Experience</h2>
+                  <div class="row  hidden-xs hidden-sm">
+                    <div class="col-sm-6">
+                        <div class="workItem">
+                        <h6>Dedham Housing Authority</h6>
+                            <div class="row">
+                                <div class="col-xs-2">2011&mdash;2012</div>
+                                <div class="col-xs-10">
+                                    <span class="jobTitle">Office Assistant</span>&emsp;<br>Responsible for interacting with visitors, filing, answering phones, and other organizational tasks.</div>
+                            </div>
+                        </div>
+                        <div class="workItem">
+                        <h6>Nobles Day Camp</h6>
+                            <div class="row">
+                                <div class="col-xs-2">2010 &mdash; 2014</div>
+                                <div class="col-xs-10">
+                                    <span class="jobTitle">Arts &amp; Crafts Counselor</span>&emsp;<br>Designed and instructed projects for campers entering first through ninth grade. Resourcefully used existing supplies and ordered for the future. Worked with one and two other counselors.</div>
+                            </div>
+                        </div>
+                        <div class="workItem">
+                        <h6>iD Tech Camps</h6>
+                            <div class="row">
+                                <div class="col-xs-2">2015</div>
+                                <div class="col-xs-10">
+                                    <span class="jobTitle">Lead Instructor</span>&emsp;<br>Taught Intro to Java Programming with Minecraft Modding at the M.I.T. campus. Campers were ages 10-12 and came for one-week sessions. Acted as medical support and assited fellow instructors as needed.</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="workItem">
+                        <h6>Ithaca College Computer Science</h6>
+                            <div class="row">
+                                <div class="col-xs-2">2014 &mdash; 2016</div>
+                                <div class="col-xs-10">
+                                    <span class="jobTitle">Teaching Assistant</span><br>
+                                    Provided support for professors of the Intro to Web Development course from Fall of 2014 to Spring of 2016. Provided support for the Intro to Programming course for Spring 2016. Held weekly help hours for each course to assist students further.</div>
+                            </div>
+                        </div>
+                        <div class="workItem">
+                        <h6>Ithaca College Tutoring Services</h6>
+                            <div class="row">
+                                <div class="col-xs-2">2014 &mdash; 2016</div>
+                                <div class="col-xs-10">
+                                    <span class="jobTitle">Peer Tutor</span><br>
+                                    Worked with idividuals and small groups to elevate knowledge and facilitate learning of course materials. Most frequently tutored Calculus I and II, Intro to Programming, and Web Development.</div>
+                            </div>
+                        </div>
+                        <div class="workItem">
+                        <h6>Ithaca College Women in Computing</h6>
+                            <div class="row">
+                                <div class="col-xs-2">2014 &mdash; 2016</div>
+                                <div class="col-xs-10">
+                                    <span class="jobTitle">Club Secretary</span><br>
+                                    Founding member of <a href="https://www.facebook.com/IthacaCollegeWomenInComputing/" target="_blank">Ithaca College Women in Computing</a>. Served as secretary for inaugural and second year.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                  </div>
+                    
+                    <div id="accordion" class="hidden-md hidden-lg" role="tablist" aria-multiselectable="true">
+                      <div class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="jobLabel">
+                          <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#jobCollapse" aria-expanded="false" aria-controls="jobCollapse">
+                             View Work Experience
+                            </a>
+                          </h4>
+                        </div>
+                        <div id="jobCollapse" class="panel-collapse collapse" role="tabpanel" aria-labelledby="jobLabel">
+                          <div class="row">
+                    <div class="col-sm-6">
+                        <div class="workItem">
+                        <h6>Dedham Housing Authority</h6>
+                            <div class="row">
+                                <div class="col-xs-2">2011&mdash;2012</div>
+                                <div class="col-xs-10">
+                                    <span class="jobTitle">Office Assistant</span>&emsp;<br>Responsible for interacting with visitors, filing, answering phones, and other organizational tasks.</div>
+                            </div>
+                        </div>
+                        <div class="workItem">
+                        <h6>Nobles Day Camp</h6>
+                            <div class="row">
+                                <div class="col-xs-2">2010 &mdash; 2014</div>
+                                <div class="col-xs-10">
+                                    <span class="jobTitle">Arts &amp; Crafts Counselor</span>&emsp;<br>Designed and instructed projects for campers entering first through ninth grade. Resourcefully used existing supplies and ordered for the future. Worked with one and two other counselors.</div>
+                            </div>
+                        </div>
+                        <div class="workItem">
+                        <h6>iD Tech Camps</h6>
+                            <div class="row">
+                                <div class="col-xs-2">2015</div>
+                                <div class="col-xs-10">
+                                    <span class="jobTitle">Lead Instructor</span>&emsp;<br>Taught Intro to Java Programming with Minecraft Modding at the M.I.T. campus. Campers were ages 10-12 and came for one-week sessions. Acted as medical support and assited fellow instructors as needed.</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="workItem">
+                        <h6>Ithaca College Computer Science</h6>
+                            <div class="row">
+                                <div class="col-xs-2">2014 &mdash; 2016</div>
+                                <div class="col-xs-10">
+                                    <span class="jobTitle">Teaching Assistant</span><br>
+                                    Provided support for professors of the Intro to Web Development course from Fall of 2014 to Spring of 2016. Provided support for the Intro to Programming course for Spring 2016. Held weekly help hours for each course to assist students further.</div>
+                            </div>
+                        </div>
+                        <div class="workItem">
+                        <h6>Ithaca College Tutoring Services</h6>
+                            <div class="row">
+                                <div class="col-xs-2">2014 &mdash; 2016</div>
+                                <div class="col-xs-10">
+                                    <span class="jobTitle">Peer Tutor</span><br>
+                                    Worked with idividuals and small groups to elevate knowledge and facilitate learning of course materials. Most frequently tutored Calculus I and II, Intro to Programming, and Web Development.</div>
+                            </div>
+                        </div>
+                        <div class="workItem">
+                        <h6>Ithaca College Women in Computing</h6>
+                            <div class="row">
+                                <div class="col-xs-2">2014 &mdash; 2016</div>
+                                <div class="col-xs-10">
+                                    <span class="jobTitle">Club Secretary</span><br>
+                                    Founding member of <a href="https://www.facebook.com/IthacaCollegeWomenInComputing/" target="_blank">Ithaca College Women in Computing</a>. Served as secretary for inaugural and second year.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                  </div>
+                        </div>
+                      </div>
+                                       
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <!-- page 6-->
+        <section id="page6">
+          <div class="content">
+            <div class="container clearfix">
+              <div class="row">
+                <div class="col-md-12">
+                  <h2 class="heading">Connect with Me</h2>
+                  <div class="row">                      
+                          <div class="text-center">
+                              <button type="button" class="btn btn-lg btn-primary "><a href="BDResume.pdf" target="_blank">Have a Look at My Resume</a></button>
+                              <br>
+                          </div>
+                        <br>
+                    <br>
+                      <h4 class="text-center">Around the Web</h4>
+                      <h2 class="social">
+                          <a href="mailto:bethdellea@gmail.com" title="Send a Message" class="email"><i class="fa fa-envelope"></i></a>
+                          <a href="https://twitter.com/BethDellea" target="_blank" title="On Twitter" class="twitter"><i class="fa fa-twitter"></i></a>
+                          <a href="https://www.instagram.com/bethybunches/" target="_blank" title="On Instagram" class="instagram"><i class="fa fa-instagram"></i></a>
+                          <a href="https://github.com/bethdellea" title="On Github" target="_blank" class="github"><i class="fa fa-github"></i></a>
+                          <a href="https://codebender.cc/user/edellea1" target="_blank" title="On Codebender" class="codebender"><img class="icon cc-icoon" src="img/cc.png"></a>
+                          <a href="http://www.ravelry.com/people/delleae" target="_blank" title="On Ravelry" class="ravelry"><img class="icon ravel-icon" src="img/ravel.png"></a>
+                    </h2>
+                        <br>
+                        <br>
+                    </div>
+                  </div>
+                  <div class="row copyright">
+                    <div class="col-md-4">
+                      <p>&copy;2016 Elizabeth Dellea</p>
+                    </div>
+                    <div class="col-md-8">
+                      <p class="credit">Template by <a href="http://www.bootstrapious.com">Bootstrapious &mdash; Bootstrap Templates</a>; favicon by <a href="http://ksadwin.com" target="_blank">K Sadwin</a></p>
+                      <!-- Please do not remove the backlink to us. It is part of the licence conditions. Thanks for understanding :)
+                      -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
       </div>
     </div>
+      
+           
+                           
+      <!-- PORTFOLIO MODALS ~~~~~~~
+                    ```````````````````````````````````````````````````````````````````````````````````````````
+                                    ~~~~~~~~~ -->
 
-
-	<div id="headerwrap">
-	    <div class="container">
-			<div class="row">
-				<div class="col-lg-6 col-lg-offset-3">
-					<h1>BETH DELLEA</h1>
-					<h4>WEB DESIGNER, DEVELOPER, &amp; USER</h4>
-				</div>
-			</div><!--/row -->
-	    </div> <!-- /container -->
-	</div><!--/headerwrap -->
-	
-	<div class="container">
-		<div class="row centered mt mb">
-			<h1>Rules of Thumb:</h1>
-			
-			<div class="col-lg-6 col-md-6 col-sm-6 gallery">
-				<h3>Always read error messages</h3>
-			</div>
-			<div class="col-lg-6 col-md-6 col-sm-6 gallery">
-                <h3>Always thank the bus drivers</h3>
-			</div>
-        </div>
-        <div class="row centered mt mb">
-			<div class="col-lg-6 col-md-6 col-sm-6 gallery">
-				<h3>Anything you're baking probaly needs more cinnamon</h3>
-			</div>
-			<div class="col-lg-6 col-md-6 col-sm-6 gallery">
-                <h3>If you are in the position to do so, help others find stability and comfort in their lives</h3>
-			</div>
-
-		</div><! --/row -->
-	</div><! --/container -->
-	
-	<div id="footerwrap">
-		<div class="container">
-			<div class="row centered">
-				<div class="col-lg-4">
-					<p><b>WEB DESIGNER, DEVELOPER, &amp; USER</b></p>
-				</div>
-				<div class="col-lg-4">
-					<img src="initialsLogoSmall.png" alt="overlapping letters: B and D" class="myLogo">
-				</div>
-                <div class="col-lg-4">
-					<p>Living in Ithaca &amp; Boston. <br><small>(By parts)</small></p>
-				</div>
-			</div>
-		</div>
-	</div><!--/footerwrap -->
-	
-
-
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
+        <div class="modal" id="mod1" tabindex="-1" role="dialog" aria-labelledby="mod1Label">
+          <div class="modal-dialog modal-sl" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">CommuniTask</h4>
+              </div>
+              <div class="modal-body">
+                  <div class="row">
+                    <div class="col-md-5">
+                      <img class="img-responsive" src="img/ctall.png" alt="multiple screenshots from the CommuniTask project">
+                      </div>
+                      <div class="col-md-7">
+                          <h6>January&mdash;May, 2015</h6>
+                            <p>Junior project, worked with four others.<br> CommuniTask is a group task management system with a gamification element. Each group sets a time period in which the tasks must get done, and for each task completed each user may progress their piece on the board a weighted diceroll number of spaces.</p>
+                            <p>CommuniTask's prototype was made as a mobile-optimized website, mainly using HTML. CSS, JS, and jQuery. It was intended to be a UX prototype, rather than a fully functional site.</p>
+                          <p>Contributions: collaborator in developing the concept of our project, as well as workig through the nuances of how it should be set up and run. Lead programmer on the prototype.</p>
+                      </div>
+                  </div>
+                  </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div> <!-- #mod1 -->
+              
+                    
+        <div class="modal" id="mod2" tabindex="-1" role="dialog" aria-labelledby="mod2Label">
+          <div class="modal-dialog modal-sl" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Linguistic Self-Expression on Dating Websites</h4>
+              </div>
+              <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-5">
+                            <img class="img-responsive" src="img/okc5.png" alt="The two OKCupid profiles used to gather user data, filled out with computer jokes">
+                    </div>
+                    <div class="col-md-7">
+                        <h6>August 2015&mdash;May 2016</h6>
+                        <p>Senior project, working with  <a href="http://ksadwin.com" target="_blank">K Sadwin</a>. <br>
+                            This project is an analysis of use of language by gender on dating websites (specifically <a href="okcupid.com" target="_blank">OKCupid</a>). We used Python 3 with the libraries Beautiful Soup and textBlob to scrape and parse over 1500 user profiles and stored the content in a SQLite database.</p>
+                            <p>We are looking for patterns in language use by deomographic groups, with a current focus on gender and sexuality. We have generated word clouds and tf-idf word clouds to view distinctions and variations in the content. The tf-idf clouds are <a href="http://ksadwin.com/okc.html" target="_blank">on Sadwin's site</a>.</p>
+                       <p class="notes">Award finalist at the 2016 <a href="http://www.ithaca.edu/sponsored-research/whalen/" target="_blank">James J. Whalen Academic Symposium</a>, and presented at the 2016 <a href="http://nycwic.acm.org/" target="_blank">New York Celebration of Women in Computing</a> <br>Poster created with Adobe InDesign.</p>
+                            <h2><a href="https://github.com/bethdellea/TheDatingLang" target="_blank" title="On Github" class="github"><i class="fa fa-github"></i></a></h2>
+                    </div>
+                  </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div> <!-- #mod2 -->
+      
+      
+        <div class="modal" id="mod3" tabindex="-1" role="dialog" aria-labelledby="mod3Label">
+          <div class="modal-dialog modal-sl" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Byte Bots</h4>
+              </div>
+              <div class="modal-body">
+                  <div class="row">
+                    <div class="col-md-5">
+                          <img class="img-responsive" src="img/botgif.gif" alt="a pair of cartoon robots fighting each other">
+                      </div>
+                      <div class="col-md-7">
+                          <h6>November&mdash;December, 2015</h6>
+                        <p>Partner project, final project for Multimedia Programming</p>
+                        <p>A game based on Rock 'Em Sock 'Em Robots, created using HTML, CSS, JavaScript, and specifically the &lt;canvas&gt; element.</p>
+                          <p>We chose to use objects for the robots instead of local variables because we wanted to set each function specific to which way the robots were facing, and defining them within the robot object simplified that process greatly.</p>
+                        <p>Contributions: the interactions on the page as well as the attack and update health functions.</p>
+                          <p class="lead hidden-xs hidden-sm"><a href="examples/bots/game.html" target="_blank" >Play it yourself!</a></p>
+                      </div>
+                  </div>
+                      
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div> <!-- #mod3 -->
+      
+      
+        <div class="modal" id="mod4" tabindex="-1" role="dialog" aria-labelledby="mod4Label">
+          <div class="modal-dialog modal-sl" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">DnD Character</h4>
+              </div>
+              <div class="modal-body">
+                  <div class="row">
+                    <div class="col-md-5">
+                          <img class="img-responsive" src="img/dndfile.PNG" alt="the file created by the DnDChar program; a character sheet in digital form.">
+                      </div>
+                      <div class="col-md-7">
+                          <h6>November&mdash;December, 2015</h6>
+                          <p>Four-person term project for Data Structures</p>
+                          <p>We wrote a prgogram that assists users in making a character object, and then saves that data to a file for the user to reference later. This program was written in C++ and collaborated on via GitHub.</p>
+                          <p>Contributions: the inventory that a user can create. The inventory was backed by a linked list, and could be saved and loaded to and from a separate file. Users could add, remove, and sell items in their inventory.</p>
+                          <h2><a href="https://github.com/bethdellea/DDChar" target="_blank" title="On Github" class="github"><i class="fa fa-github"></i></a></h2>
+                        
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div> <!-- #mod4 -->
+      
+      <div class="modal" id="mod5" tabindex="-1" role="dialog" aria-labelledby="mod4Label">
+          <div class="modal-dialog modal-sl" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Ada's Pages: The Forgotten Code</h4>
+              </div>
+              <div class="modal-body">
+                  <div class="row">
+                    <div class="col-md-5">
+                          <img class="img-responsive" src="img/ada2.png" alt="The one level of the game.">
+                      </div>
+                      <div class="col-md-7">
+                          <h6>February 27&mdash;28, 2016</h6>
+                          <blockquote>Human and Robot Friend learn to cooperate and code.</blockquote>
+                          <p>A hack to meet the challenge of teaching children to code. Created using the HTML5 &lt;canvas&gt; element. Won prize for best use of Amazon Web Services hosting. <br>Created at <a href="http://wic-hacks.rit.edu/" target="_blank">WiC Hacks</a>.</p>
+                          <p>Contributions: movement programming, debugging, project management and coordination.</p>
+                          <div class="row">
+                            <div class="col-xs-6  hidden-xs hidden-sm">
+                                <p class="lead"><a href="examples/ada/first.html" target="_blank">Play it yourself!</a></p>
+                            </div>
+                            <div class="col-xs-3 col-xs-offset-1">
+                                <h2><a href="https://github.com/bethdellea/WiC-Hacks-2016" target="_blank" title="On Github" class="github"><i class="fa fa-github"></i></a></h2>
+                            </div>
+                        </div>
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div> <!-- #mod5 -->
+      
+      
+        <div class="modal" id="mod6" tabindex="-1" role="dialog" aria-labelledby="mod5Label">
+          <div class="modal-dialog modal-sl" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">HVZ Web App</h4>
+              </div>
+              <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-5">
+                      <img class="img-responsive" src="img/hvz2.PNG" alt="Some stills from the app.">
+                    </div>
+                    <div class="col-md-7">
+                      <h6>January&mdash;May 2016</h6>
+                        <p>A project using the Java Play framework for web development.<br>
+                        Made for a Software Engineering course, the finished product allows players to send messages to all other players who are also humans or zombies. Players are able to switch from human to zombie when bitten, and Moderators are able to track the number of humans and zombies in their game and send messages to all players.</p>
+                        <p>Contributions:  documentation, diagrams, and database structure. Initialization of and connection to a MySQL database. Connections between back- and front-end components and functions.</p>
+                         <h2><a href="https://github.com/mflaim1/HVZWebApp" target="_blank" title="On Github" class="github"><i class="fa fa-github"></i></a></h2>
+                    </div>
+                  </div>
+                
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div> <!-- #mod6 -->
+      
+      <div class="modal" id="mod7" tabindex="-1" role="dialog" aria-labelledby="mod5Label">
+          <div class="modal-dialog modal-sl" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Mind Body Soul</h4>
+              </div>
+              <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-5">
+                      <img class="img-responsive" src="img/mbsdb.PNG" alt="a database diagram">
+                    </div>
+                    <div class="col-md-7">
+                      <h6>September&mdash;December 2014</h6>
+                          <p>A mental health tracking application created for Advanced Web Programming.</p>
+                        <p>Working in a group of three, we created a web application which allowed users to input activities and moods to track trends and correlations. The site also included mental health resources and a section desinged to help users in crisis.</p>
+                        <p>Contributions: user interface, database architecture, some server-side functionality.</p>
+                    </div>
+                  </div>
+                
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div> <!-- #mod7 -->
+      
+        <div class="modal" id="mod8" tabindex="-1" role="dialog" aria-labelledby="mod6Label">
+          <div class="modal-dialog modal-sl" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">The Smallest of Sad Faces :c</h4>
+              </div>
+              <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-5">
+                        <img class="img-responsive" src="img/ggj2.png" alt="One round of Val's minigame.">
+                    </div>
+                    <div class="col-md-7">
+                        <h6>January 2016</h6>
+                        <p>Submission for the <a href="http://globalgamejam.org/2016/games/smallest-sad-faces-c" target="_blank">Global Game Gam 2016</a>. Created with HTML, the HTML5 &lt;canvas&gt; element, and the Phaser.js library.</p>
+                        <p>Explore the theme of "ritual" with the children.</p>
+                        <p>Contributions: lead programmer, gameplay designer.</p>
+                        <div class="row">
+                            <div class="col-xs-6  hidden-xs hidden-sm">
+                                <p class="lead"><a href="examples/smallest/index.html" target="_blank">Play it yourself!</a></p>
+                            </div>
+                            <div class="col-xs-3 col-xs-offset-1">
+                                <h2><a href=" https://github.com/ksadwin/Global-Game-Jam-2016" title="On Github" target="_blank" class="github"><i class="fa fa-github"></i></a></h2>
+                            </div>
+                        </div>
+                    
+                    </div>
+                  </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div> <!-- #mod8 -->
+      
+      
+      
+      
+    <!-- Javascript files-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <script src="assets/js/bootstrap.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/jquery-1.11.0.min.js"><\/script>')</script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="js/jquery.onepage-scroll.js"></script>
+    <script src="js/front.js"></script>
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID.-->
+    <script>
+      (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+      function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+      e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+      e.src='//www.google-analytics.com/analytics.js';
+      r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+      ga('create','UA-XXXXX-X');ga('send','pageview');
+    </script>
   </body>
 </html>

@@ -1,0 +1,98 @@
+@font-face {
+    font-family: pizzabot;
+    src: url("pizzabot/pizzabot.ttf");
+}
+
+@font-face {
+    font-family:bo;
+    src: url("bo/BlackOpsOne-Regular.ttf");
+}
+
+
+@font-face {
+    font-family: monaco;
+    src: url("monaco/Monaco.ttf");
+}
+
+body{
+    
+    background-color: rgba(133, 99, 222, 1);
+    
+    background-image: url("../img/arena.png");
+    background-size: cover;
+}
+
+.fontPizza{
+    font-family: pizzabot;
+}
+
+.fontbo{
+    font-family: bo;
+    font-size: 4em;
+}
+
+h1{
+    font-size: 3em;
+}
+
+
+h1, p{
+    color: #ddd;
+    text-shadow: 2px 2px #333;
+    font-family: monaco, sans-serif;
+}
+
+button{
+    font-family: monaco, sans-serif;
+}
+
+#fontFix{
+    visibility: hidden;
+}
+
+.changeThings, .canvasArea{
+    float: left;
+}
+
+.changeThings{
+    width: 23%;
+    height: 100%;
+    color: #ddd;
+    text-shadow: 2px 2px #333;
+    padding: 8px;
+}
+
+.canvasArea{
+    padding: 5px;
+    width: 58%;
+    margin: 0% 1%;
+}
+
+canvas{
+    width: 85%;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+em{
+    font-weight: bold;
+    font-size: 1.2em;
+    font-style: normal;
+}
+
+.center-text{
+    text-align: center;
+}
+
+
+h2 button{
+    font-size: 1.6em;
+}
+
+.canvasControls{
+    font-family: bo;
+    color: #ddd;
+    text-shadow: 2px 2px #333;
+    font-size: 10em;
+}

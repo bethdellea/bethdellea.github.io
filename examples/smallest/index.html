@@ -1,0 +1,774 @@
+<!doctype html> 
+<html lang="en"> 
+<head> 
+	<meta charset="UTF-8" />
+	<title>The Smallest of Sad Faces</title>
+    <link href='https://fonts.googleapis.com/css?family=Titillium+Web' rel='stylesheet' type='text/css'>
+	<script type="text/javascript" src="phaser.js"></script>
+    <style type="text/css">
+        body {
+            margin: 0;
+            font-family: 'Titillium Web';
+        }
+        #font-test{
+            font-family: 'Titillium Web';
+            visibility: hidden;
+        }
+    </style>
+</head>
+<body>
+
+<script type="text/javascript">
+
+var game = new Phaser.Game(800, 600, Phaser.AUTO, '', { preload: preload, create: create, update: update });
+
+function preload() {
+    game.load.image('homeBg', 'assets/img/waitingRoom.png');
+    game.load.image('officeBg','assets/img/inTheOffice.png');
+    game.load.image('classBg', 'assets/img/classroom.png');
+    game.load.spritesheet('cris', 'assets/img/cris5x.png', 60, 240);
+    game.load.spritesheet('eve', 'assets/img/eve5x.png', 70, 225);
+    game.load.spritesheet('pat', 'assets/img/pat5x.png', 80, 250);
+    game.load.spritesheet('val', 'assets/img/val5x.png', 80, 260);
+    game.load.spritesheet('ghost', 'assets/img/null.png', 2, 40);
+    
+    //audio loads
+    game.load.audio('home', 'assets/audio/HH-title.wav');
+    game.load.audio('cGame', 'assets/audio/HH-Christmas.wav');
+    game.load.audio('eGame', 'assets/audio/HH-NYE.wav');
+    game.load.audio('pGame', 'assets/audio/HH-StPatty.wav');
+    game.load.audio('vGame', 'assets/audio/HH-VDay.wav');
+    
+    //sound effect audio loads
+    game.load.audio('drop', 'assets/audio/effect/drop.wav');
+    game.load.audio('next', 'assets/audio/effect/enter-next-game.wav');
+    game.load.audio('fail', 'assets/audio/effect/level-fail.wav');
+    game.load.audio('phone', 'assets/audio/effect/phone.wav');
+    game.load.audio('pickup', 'assets/audio/effect/pickup-object.wav');
+    game.load.audio('scream', 'assets/audio/effect/scream.wav');
+    game.load.audio('select', 'assets/audio/effect/select.wav');
+    game.load.audio('text', 'assets/audio/effect/text.wav');
+    game.load.audio('creepy', 'assets/audio/effect/underlining_creepy.wav');
+    game.load.audio('walk', 'assets/audio/effect/walking-and-land-on-ground.wav');
+    game.load.audio('danger', 'assets/audio/effect/you are about to die.wav');
+    
+    //Val's game stuff!
+    game.load.image('bae1', 'assets/img/hal.png');
+    game.load.image('bae2', 'assets/img/han.png');
+    game.load.image('bae3', 'assets/img/patB.png');
+    game.load.image('bae4', 'assets/img/crisW.png');
+    game.load.image('baeAmmo', 'assets/img/heart.png');
+    game.load.image('vAmmo', 'assets/img/chocolate.png');
+    
+    //post-kid stuff!
+    game.load.image('afterV', 'assets/img/heart.png');
+    game.load.image('afterC', 'assets/img/milkncookies.png');
+    game.load.image('afterP', 'assets/img/4leaf.png');
+    game.load.image('afterE', 'assets/img/balloon_purple.png');
+    
+
+}
+    var homeMusic;
+    var platforms;
+    var player;
+    var nextScr = "home";
+    var movingOn = false;
+    var gameFin = false; //hypothetically can stop player from leaving a game until they've won it
+    var canGoBack = false;
+    var couchStartX = 205;
+    var couchEndX = 660;
+    
+    var vGame;
+    var cGame;
+    var pGame;
+    var eGame;
+        
+    var cname;
+    var vname;
+    var pname;
+    var ename;
+    
+    //effects
+    var drop;
+    var next;
+    var fail;
+    var phone;
+    var pickup;
+    var scream;
+    var select;
+    var text;
+    var creepy;
+    var walk;
+    var danger;
+    
+    
+    
+    //vars for Val's Game
+    var player;
+var baes;
+var bullets;
+var bulletTime = 0;
+var cursors;
+var fireButton;
+var explosions;
+var starfield;
+var enemyBullet;
+var firingTimer = 0;
+var stateText;
+var livingEnemies = [];
+    
+    
+    var valPlayed = false;
+    var crisPlayed = false;
+    var patPlayed = false;
+    var evePlayed = false;
+    
+    
+function create() {
+    homeMusic = game.add.audio('home');
+    valMusic = game.add.audio('vGame');
+    
+    drop = game.add.audio('drop');
+    drop.volume = .2;
+    next = game.add.audio('next');
+    fail = game.add.audio('fail');
+    fail.volume = .2;
+    phone = game.add.audio('phone');
+    pickup = game.add.audio('pickup');
+    scream = game.add.audio('scream');
+    scream.volume = .5;
+    select = game.add.audio('select');
+    text = game.add.audio('text');
+    text.volume = .1;
+    creepy = game.add.audio('creepy');
+    walk = game.add.audio('walk');
+    walk.volume = .2;
+    danger = game.add.audio('danger');
+    
+    game.sound.setDecodedCallback([ homeMusic, valMusic ], startMusic, this); //decodes the file, is a list of all audio assets to use
+    
+    game.physics.startSystem(Phaser.Physics.ARCADE);
+    homebg = game.add.sprite(0,0,'homeBg');
+    
+    //adding a background for each area -- visibility will start as not a thing
+        //make original bg invisible and these visible as we go back and forth
+    officebg = game.add.sprite(0,0,'officeBg');
+    officebg.visible = false;
+    classbg = game.add.sprite(0,0, 'classBg');
+    classbg.visible = false;
+    
+    
+    eve = game.add.sprite(562, game.world.height-400, 'eve', 0);
+    pat = game.add.sprite(450, game.world.height-420, 'pat', 0); 
+    val = game.add.sprite(330, game.world.height-430, 'val', 0);
+    cris = game.add.sprite(226, game.world.height - 410, 'cris', 0);
+    placeholder = game.add.sprite(20, 0, 'ghost', 0);
+    
+    
+    afterV = game.add.sprite(350, game.world.height - 330, 'afterV');
+    afterE = game.add.sprite(565, game.world.height - 330, 'afterE');
+    afterP = game.add.sprite(460, game.world.height - 330, 'afterP');
+    afterC = game.add.sprite(225, game.world.height - 350, 'afterC');
+    afterC.scale.setTo(2,2);
+    afterP.scale.setTo(1.8,1.8);
+    afterV.scale.setTo(3,3);
+    afterP.visible = false;
+    afterV.visible = false;
+    afterC.visible = false;
+    afterE.visible = false;
+        
+    cname = game.add.text(226, game.world.height-480,'cris', {fontSize: '30px', fill: '#eee', font:'Titillium Web'});
+    vname = game.add.text(350, game.world.height-480, 'val', {fontSize: '30px', fill: '#eee', font:'Titillium Web'});
+    pname = game.add.text(470, game.world.height-480, 'pat', {fontSize: '30px', fill: '#eee', font:'Titillium Web'});
+    ename = game.add.text(570, game.world.height-480, 'eve', {fontSize: '30px', fill: '#eee', font:'Titillium Web'});
+    
+   
+    //setup things for each kid
+    // ****************** 
+    game.physics.arcade.enable(cris);
+    game.physics.arcade.enable(val);
+    game.physics.arcade.enable(pat);
+    game.physics.arcade.enable(eve);
+    game.physics.arcade.enable(placeholder);
+    
+    placeholder.body.bounce.y = 0.2;
+    placeholder.body.gravity.y = 0;
+    placeholder.body.collideWorldBounds = true;
+    placeholder.animations.add('left', [3,4], 15, true);
+    placeholder.animations.add('right', [0,1], 15, true);
+    placeholder.inputEnabled=true;
+    
+    
+
+    cris.body.bounce.y = 0.2;
+    cris.body.gravity.y = 0;
+    cris.body.collideWorldBounds = true;
+    cris.animations.add('left', [3,4,5], 15, true);
+    cris.animations.add('right', [0,1,2], 15, true);
+    cris.inputEnabled=true;
+    cris.events.onInputDown.add(crisSelect,this);
+    cris.events.onInputOver.add(hoverNameC, this);
+    cris.events.onInputOut.add(remHover, this);
+    
+   
+    cname.visible = false;
+    
+    val.body.bounce.y = 0.2;
+    val.body.gravity.y = 0;
+    val.body.collideWorldBounds = true;
+    val.animations.add('left', [3,4,5], 15, true);
+    val.animations.add('right', [0,1,2], 15, true);
+    val.inputEnabled=true;
+    val.events.onInputDown.add(valSelect,this);
+    val.events.onInputOver.add(hoverNameV, this);
+    val.events.onInputOut.add(remHover, this);
+    
+    vname.visible = false;
+    
+    pat.body.bounce.y = 0.2;
+    pat.body.gravity.y = 0;
+    pat.body.collideWorldBounds = true;
+    pat.animations.add('left', [3,4,5], 15, true);
+    pat.animations.add('right', [0,1,2], 15, true);
+    pat.inputEnabled=true;
+    pat.events.onInputDown.add(patSelect,this);
+    pat.events.onInputOver.add(hoverNameP, this);
+    pat.events.onInputOut.add(remHover, this);
+    
+    pname.visible = false;
+    
+    eve.body.bounce.y = 0.2;
+    eve.body.gravity.y = 0;
+    eve.body.collideWorldBounds = true;
+    eve.animations.add('left', [3,4,5], 15, true);
+    eve.animations.add('right', [0,1,2], 15, true);
+    eve.inputEnabled=true;
+    eve.events.onInputDown.add(eveSelect,this);
+    eve.events.onInputOver.add(hoverNameE, this);
+    eve.events.onInputOut.add(remHover, this);
+    
+    ename.visible = false;
+
+    initDir = game.add.text(220, game.world.height-550,'Click a child to select a patient.', {fontSize: '33px', fill: '#ee3', font:'Titillium Web'});
+    officeDir = game.add.text(220, game.world.height-550,'Please enter the office > > >', {fontSize: '33px', fill: '#ee3', font:'Titillium Web'});
+    officeDir.visible = false;
+    moveDir = game.add.text(5, game.world.height-595,'Use the arrow keys to move your child around the screen', {fontSize: '14px', fill: '#ee3', font:'Titillium Web'});
+    
+    valDir = game.add.text(5, game.world.height-580,'Hit enter to distract them with chocolate.', {fontSize: '14px', fill: '#ee3', font:'Titillium Web'});
+    valDir.visible = false;
+    
+    
+    valOff1 = game.add.text(80, game.world.height-100,'Hello, Val. I hear you’re having some trouble with a repressed', {fontSize: '22px', fill: '#ee3', font:'Titillium Web'});
+    valOff1a = game.add.text(80, game.world.height-80,'childhood memory. Let’s revisit that time and figure out what we can…',{fontSize: '22px', fill: '#ee3', font:'Titillium Web'});
+    valOff1.visible = false;
+    valOff1a.visible = false;
+    valOff2 = game.add.text(80, game.world.height - 165, 'I believe what you were experiencing was actually just the celebration ', {fontSize: '22px', fill: '#ee3', font:'Titillium Web'});
+    valOff2a = game.add.text(80,game.world.height - 140, 'of Valentine\'s Day. That happens every year, so you’d better get used to it.', {fontSize: '22px', fill: '#ee3', font:'Titillium Web'});
+    valOff2b = game.add.text(80,game.world.height - 115, 'It seems like you were uncomfortable being forced into romantic', {fontSize: '22px', fill: '#ee3', font:'Titillium Web'});
+    valOff2c = game.add.text(80,game.world.height - 90, ' situations with boys. May I suggest being a lesbian instead?', {fontSize: '22px', fill: '#ee3', font:'Titillium Web'});
+    valOff2.visible = false;
+    valOff2a.visible = false;
+    valOff2b.visible = false;
+    valOff2c.visible = false;
+                            
+    
+//    scoreText = game.add.text(16,16,'score: 0', {fontSize: '32px', fill: '#000'});
+      player = placeholder;
+    
+    
+    
+    //Val game bullets and baes and stuff
+    bullets = game.add.group();
+    bullets.enableBody = true;
+    bullets.physicsBodyType = Phaser.Physics.ARCADE;
+    bullets.createMultiple(40, 'vAmmo');
+    bullets.scale.setTo(1.5,1.5);
+    bullets.setAll('anchor.x', 0.5);
+    bullets.setAll('anchor.y', 1);
+    bullets.setAll('outOfBoundsKill', true);
+    bullets.setAll('checkWorldBounds', true);
+    
+    // The enemy's bullets
+    enemyBullets = game.add.group();
+    enemyBullets.enableBody = true;
+    enemyBullets.physicsBodyType = Phaser.Physics.ARCADE;
+    enemyBullets.createMultiple(40, 'baeAmmo');
+    enemyBullets.scale.setTo(2,2);
+    enemyBullets.setAll('anchor.x', 0.5);
+    enemyBullets.setAll('anchor.y', 1);
+    enemyBullets.setAll('outOfBoundsKill', true);
+    enemyBullets.setAll('checkWorldBounds', true);
+    
+    
+    
+    baes = game.add.group();
+    baes.enableBody = true;
+    baes.physicsBodyType = Phaser.Physics.ARCADE;
+
+    createBaes();
+    baes.visible = false;
+    fireButton = game.input.keyboard.addKey(Phaser.Keyboard.ENTER); //used to be SPACE, not 100% this is the way to ask for enter
+}
+    function createBaes(){
+        var baeChoice;
+         for (var y = 0; y < 4; y++){
+             for (var x = 0; x < 10; x++){
+                 if( x % 4 == 0){
+                     baeChoice = 'bae1';
+                 }
+                 if( x % 4 == 1){
+                     baeChoice = 'bae2';
+                 }
+                 if( x % 4 == 2){
+                     baeChoice = 'bae3';
+                 }
+                 if( x % 4 == 3){
+                     baeChoice = 'bae4';
+                 }
+                var bae = baes.create(x * 60, y * 72, baeChoice);
+                bae.scale.setTo(2,2);
+                bae.anchor.setTo(0.5, 0.5);
+                bae.body.moves = true;
+                //bae.visible = false;
+        }
+    }
+
+    baes.x = 100;
+    baes.y = 50;
+
+    //  All this does is basically start the invaders moving. Notice we're moving the Group they belong to, rather than the invaders directly.
+    var tween = game.add.tween(baes).to( { x: 200 }, 2000, Phaser.Easing.Linear.None, true, 0, 1000, true);
+
+   
+    }
+    
+    function remHover(){
+        cname.visible = false;
+        ename.visible = false;
+        vname.visible = false;
+        pname.visible = false;
+    }
+    
+    function hoverNameC(sprite){
+        if(homebg.visible){ cname.visible = true;}
+    }
+    function hoverNameE(sprite){
+         if(homebg.visible){ ename.visible = true; }
+    }
+    function hoverNameV(sprite){
+        if(homebg.visible){ vname.visible = true; }
+    }
+    function hoverNameP(sprite){
+        if(homebg.visible){ pname.visible = true; }
+    }
+    
+    
+    
+    function eveSelect(sprite, pointer){
+        select.play();
+        player = sprite;
+        console.log("pat selected");
+        if (player.body.gravity.y == 0) {
+            drop.play();
+        }
+        player.body.gravity.y = 300;
+        nextScr = "eveOffice1";
+        initDir.visible = false;
+        officeDir.visible = true;
+        gameFin = true;
+    }
+    
+    function patSelect(sprite, pointer){
+        select.play();
+        player = sprite;
+        console.log("pat selected");
+        if (player.body.gravity.y == 0) {
+            drop.play();
+        }
+        player.body.gravity.y = 300;
+        nextScr = "patOffice1";
+        initDir.visible = false;
+        officeDir.visible = true;
+        gameFin = true;
+    }
+    function valSelect(sprite, pointer){
+        select.play();
+        player = sprite;
+        console.log("val selected");
+        if (player.body.gravity.y == 0) {
+            drop.play();
+        }
+        player.body.gravity.y = 300;
+        nextScr = "valOffice1";
+        initDir.visible = false;
+        officeDir.visible = true;
+        gameFin = true;
+    }
+    function crisSelect (sprite, pointer) { 
+        select.play();
+        player = sprite;
+        console.log("cris selected");
+        if (player.body.gravity.y == 0) {
+            drop.play();
+        }
+        player.body.gravity.y = 300;
+        nextScr = "crisOffice1";
+        initDir.visible = false;
+        officeDir.visible = true;
+        gameFin = true;
+    }
+    function timeToMove(sprite){
+        //called every time the player moves bc that's how we roll
+        
+        if(sprite.x + sprite.width >= game.width && gameFin){
+            //can only move on if the character is @ the edge and you're done here
+            movingOn = true;
+            gameFin = false;
+            officeDir.visible = false;
+            //will let update draw the next screen
+            next.play();
+        }
+        if(sprite.x <= 0 && canGoBack) {
+            movingOn = true;
+            officeDir.visible = false;
+            nextScr = "homebg";
+            next.play();
+            sprite.x = game.width - sprite.width;
+            sprite.body.velocity.x = 0;
+            sprite.animations.stop();
+            sprite.frame = 0;
+        }
+        if (!walk.isPlaying) {
+            walk.play();
+        }
+    }
+    
+function update() {
+   
+    cursors = game.input.keyboard.createCursorKeys();
+    if (player == placeholder) {
+        return;
+    }
+    
+    player.body.velocity.x = 0;
+    if(cursors.left.isDown){
+        player.body.velocity.x = -150;
+        player.animations.play('left');
+        timeToMove(player);
+    }
+    else if(cursors.right.isDown){
+        player.body.velocity.x = 150;
+        player.animations.play('right');
+        timeToMove(player);
+    }
+    else{
+        player.animations.stop();
+        player.frame = 0;
+    }
+    
+    if(officebg.visible){
+        //if you're in the office you can sit on the couch
+        if(player.body.x > couchStartX && player.body.x + player.body.width < couchEndX){
+            if(cursors.up.isDown){
+                player.body.velocity.y = -350;
+            }
+            if(player.body.y <= game.world.height-400){
+                player.body.velocity.y = 0;
+                player.body.gravity.y = 0;
+                player.body.y = game.world.height-400;
+            }
+    
+        }
+        if(player.body.y <= game.world.height-370){
+            if(player.body.x < couchStartX || player.body.x + player.body.width > couchEndX){
+            //fall off the couch if you go over the edgeeeee
+                player.body.gravity.y = 300;
+                if (!drop.isPlaying) {
+                    drop.play();
+                }
+            }
+        }
+        gameFin = true; //a line for now that should really go away when we add psych dialogue
+        if(movingOn){
+            
+            if(nextScr == "class"){
+                homeMusic.stop();
+                vGame = true;
+                officebg.visible = false;
+                classbg.visible = true;
+                player.body.x = 2;
+                movingOn = false;
+                canGoBack = false;
+                nextScr = "valOffice2";
+                valDir.visible = false;
+                valMusic.loopFull(0.6);
+            }
+            if(nextScr == "homebg"){
+                val.visible = true;
+                cris.visible = true;
+                pat.visible = true;
+                eve.visible = true;
+                if (!canGoBack) {
+                    player = placeholder;
+                }
+                if(valPlayed){
+                    valOff2.visible = false;
+                    valOff2a.visible = false;
+                    valOff2b.visible = false;
+                    valOff2c.visible = false;
+                    val.visible = false;
+                    afterV.visible = true;
+                }
+                if(patPlayed){
+                    pat.visible = false;
+                    afterP.visible = true;
+                }
+                if(crisPlayed){
+                    cris.visible = false;
+                    afterC.visible = true;
+                }
+                if(evePlayed){
+                    eve.visible = false;
+                    afterE.visible = true;
+                }
+                if( evePlayed && crisPlayed && patPlayed && valPlayed){
+                    //you fixed all the broken children. yay.
+                }
+                officebg.visible = false;
+                homebg.visible = true;
+                movingOn = false;
+                canGoBack = false;
+            }
+
+            
+        }
+    }
+    
+    if(movingOn){
+        if (nextScr == "crisOffice1"){
+            //change setting!!!!!
+            hideKids();
+            officebg.visible = true;
+            homebg.visible = false;
+            cris.visible = true;
+            player.x = 2;
+            movingOn = false;
+            canGoBack = true;
+            nextScr = "mall";
+        }
+        else if(nextScr == "valOffice1"){
+            //change setting!!!!!
+            hideKids();
+            officebg.visible = true;
+            homebg.visible = false;
+            val.visible = true;
+            player.x = 2;
+            movingOn = false;
+            canGoBack = true;
+            nextScr = "class";
+            valOff1.visible = true;
+            valOff1a.visible = true;
+        }
+        
+        else if(nextScr == "patOffice1"){
+            //change setting!!!!!
+            hideKids();
+            officebg.visible = true;
+            homebg.visible = false;
+            pat.visible = true;
+            player.x = 2;
+            movingOn = false;
+            canGoBack = true;
+            nextScr = "mall2";
+        }
+    
+        else if(nextScr == "eveOffice1"){
+            //change setting!!!!!
+            hideKids();
+            officebg.visible = true;
+            homebg.visible = false;
+            eve.visible = true;
+            player.x = 2;
+            movingOn = false;
+            canGoBack = true;
+            nextScr = "party";
+        }
+        else if(nextScr == "valOffice2"){
+            //change setting!!!!!
+            valMusic.stop();
+            homeMusic.loopFull(0.6);
+            player.scale.setTo(1,1);
+            officebg.visible = true;
+            classbg.visible = false;
+            player.x = 2;
+            movingOn = false;
+            nextScr = "homebg";
+            valOff2.visible = true;
+            valOff2a.visible = true;
+            valOff2b.visible = true;
+            valOff2c.visible = true;
+        }
+        
+    }
+    
+    if(vGame){
+        valOff1.visible =false;
+        valOff1a.visible = false;
+        movingOn = false;
+        gameFin = false;
+        baes.visible = true;
+        valDir.visible = true;
+        player.scale.setTo(.7,.7);
+        player.anchor.setTo(0.05, 0.05);
+        player.body.gravity.y = 0;
+        //space invader Valentine Game code stuff!!!! 
+        
+        
+        player.body.velocity.setTo(0, 0);
+
+        if (cursors.left.isDown)
+        {
+            player.body.velocity.x = -200;
+            timeToMove(player);
+        }
+        else if (cursors.right.isDown)
+        {
+            player.body.velocity.x = 200;
+            timeToMove(player);
+        }
+
+        //  Firing?
+        if (fireButton.isDown)
+        {
+            fireBullet();
+        }
+
+        if (game.time.now > firingTimer)
+        {
+            enemyFires();
+        }
+
+        //  Run collision
+        game.physics.arcade.overlap(bullets, baes, collisionHandler, null, this);
+        game.physics.arcade.overlap(enemyBullets, player, enemyHitsPlayer, null, this);
+        
+        
+    }
+}
+   
+function collisionHandler (bullet, bae) {
+
+    //  When a bullet hits an alien we kill them both
+    bullet.kill();
+    bae.kill();
+
+    // Destruction noises
+    fail.play();
+
+    if (baes.countLiving() == 0)
+    {
+        gameFin = true;
+        valDir.visible = false;
+        vGame = false;
+        valPlayed = true;
+    }
+
+}
+
+function enemyHitsPlayer (player,bullet) {
+    
+    bullet.kill();
+    console.log("I've been hit!");
+    // Distress noises
+    scream.play();
+}
+
+function enemyFires () {
+
+    //  Grab the first bullet we can from the pool
+    enemyBullet = enemyBullets.getFirstExists(false);
+
+    livingEnemies.length=0;
+
+    baes.forEachAlive(function(bae){
+
+        // put every living enemy in an array
+        livingEnemies.push(bae);
+    });
+
+
+    if (enemyBullet && livingEnemies.length > 0)
+    {
+        
+        var random=game.rnd.integerInRange(0,livingEnemies.length-1);
+
+        // randomly select one of them
+        var shooter=livingEnemies[random];
+        // And fire the bullet from this enemy
+        enemyBullet.reset(shooter.body.x, shooter.body.y);
+        
+        game.physics.arcade.moveToObject(enemyBullet,player,120);
+        // And make a sound!
+        text.play();
+        firingTimer = game.time.now + 2000;
+    }
+
+}
+
+function fireBullet () {
+
+    //  To avoid them being allowed to fire too fast we set a time limit
+    if (game.time.now > bulletTime)
+    {
+        //  Grab the first bullet we can from the pool
+        bullet = bullets.getFirstExists(false);
+
+        if (bullet)
+        {
+            //  And fire it
+            bullet.reset(player.x - 50, player.y + 8);
+            bullet.body.velocity.y = -400;
+            bulletTime = game.time.now + 200;
+            // And make a sound!
+            select.play();
+        }
+    }
+
+}
+
+function resetBullet (bullet) {
+
+    //  Called if the bullet goes out of the screen
+    bullet.kill();
+
+}
+
+    
+    function hideKids(){
+        cris.visible = false;
+        val.visible = false;
+        eve.visible = false;
+        pat.visible = false;
+        //it's a waste of code to do this individually every time tbh
+        afterC.visible = false;
+        afterV.visible = false;
+        afterE.visible = false;
+        afterP.visible = false;
+        
+    }
+
+function startMusic(){
+        if(homebg.visible){
+            homeMusic.loopFull(0.6);
+        }
+        if(classbg.visible){
+            valMusic.loopFull(0.6);
+        }
+    }
+    
+</script>
+    
+    <p id="font-test">pls work</p>
+
+</body>
+</html>

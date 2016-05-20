@@ -1,0 +1,403 @@
+<!doctype html> 
+<html lang="en"> 
+<head> 
+	<meta charset="UTF-8" />
+    <title>Code Learning Game</title>
+	<script type="text/javascript" src="assets/js/phaser.js"></script>
+</head>
+<body>
+
+<script type="text/javascript">
+
+var game = new Phaser.Game(800, 600, Phaser.AUTO, '', { preload: preload, create: create, update: update, render: render});
+
+var bridge;
+var platforms;
+var platArray;
+var bar;
+var wood;
+var woods;
+var fallPlat;
+var player;
+var numPicked=0;
+var paperG;
+var paper1;
+var paper1Screen;
+var paper2;
+var paper2Screen;
+var paper3;
+var paper3Screen;
+var paper4;
+var paper4Screen;
+var adaBack;
+var adaScreen;
+var hasChecked1=false;
+var hasChecked2=false;
+var hasChecked3=false;
+var hasChecked4=false;
+var winning = false;
+var initialJump = false;
+var withAda = false;
+var newBridge;
+var tempWAda;
+var newBrG;
+var title;
+var intro;
+var end;
+
+    
+function preload(){
+    game.load.image('rock', 'assets/img/rock.png');
+    game.load.image('lCliff', 'assets/cliffL.png');
+    game.load.image('rCliff', 'assets/cliffR.png');
+    //game.load.spritesheet('hopper', 'assets/img/hopper.png', 17, 39);
+    //game.load.spritesheet('ada', 'assets/img/ada.png', 22, 23);
+    game.load.image('backGround','assets/BACKGROUND.png');
+    game.load.image('branchL','assets/img/branch.png');
+    game.load.image('branchR', 'assets/branch2.png');
+    game.load.image('log', 'assets/img/log.png');
+    game.load.image('wood', 'assets/wood.png');
+    game.load.image('bridge', 'assets/bridge.png');
+    game.load.image('bar', 'assets/bottomBar.png');
+    game.load.image('ground','assets/secondGround.png');
+    game.load.image('ground2','assets/img/gameGround.png');
+    game.load.image('paper','assets/img/page.png');
+    game.load.spritesheet('dude', 'assets/hopper.png', 38, 80);
+    game.load.spritesheet('ada', 'assets/ada.png', 44, 46);
+    game.load.image('screen1', 'assets/declaration.png');
+    game.load.image('screen2', 'assets/assignment.png');
+    game.load.image('screen3', 'assets/comparison.png');
+    game.load.image('screen4', 'assets/iteration.png');
+    game.load.image('adaScreen','assets/adaScreentxt.png');
+    game.load.image('title','assets/img/title.png');
+    game.load.image('intro','assets/img/intro.png');
+    game.load.image('end','assets/end.png');
+}
+    
+function create(){
+    game.stage.backgroundColor = '#2d2d2d';
+    lCliffs = game.add.tileSprite(0,0,300, 2000, 'lCliff');
+    rCliffs = game.add.tileSprite(508,0,810, 2000, 'rCliff');
+    backGround = game.add.sprite(0,0,'backGround');
+    fallPlat = game.add.group();
+    platforms = game.add.group();
+    //  We will enable physics for any object that is created in this group
+    
+    
+    platforms.enableBody = true;
+    fallPlat.enableBody = true;
+    
+
+    // Here we create the ground.
+    var ground = platforms.create(0, game.world.height-260, 'ground'); //game.world.height - 64
+   
+   // var branch = platforms.create(120, 210, 'branch');
+    //  Scale it to fit the width of the game (the original sprite is 400x32 in size)
+    //branch.scale.setTo(.65,1);
+    ground.scale.setTo(1, 1);
+    
+   // branch.body.immovable = true;
+    bridge = fallPlat.create(120, 160, 'bridge');
+    bar = fallPlat.create(120,350,'bar');
+    
+    game.physics.enable(fallPlat);
+    game.physics.enable(platforms);
+    
+
+//    var ground = platforms.create(0, 300, 'ground'); //game.world.height - 64
+
+    //  This stops it from falling away when you jump on it
+    ground.body.immovable = true;
+    //carrie
+    wood = game.add.group();
+    game.physics.enable(wood);
+    wood.enableBody = true;
+    
+    for(var i = 0; i < 80; i++){
+        //randomization
+        var moveX = game.rnd.integerInRange(-75, 5);
+        var moveY = game.rnd.integerInRange(-25, 25);
+        var objNum = game.rnd.integerInRange(1, 3);
+        var objName;
+        
+        if(i%2==0){
+            //left platforms
+            if(objNum < 2){
+                objName = 'ground';
+            }
+            else{
+                objName = 'branchL';
+            }
+            var plat = platforms.create(0 + moveX, (i*120)+600 + moveY, objName);
+            plat.body.immovable = true;
+            var plank = wood.create(100 + moveX, (i*120)+90 + moveY, 'wood');
+            
+            plank.body.immovable = true;
+        }else{
+            //right platforms
+            if(objNum < 2){
+            objName = 'ground';
+            }
+            else{
+                objName = 'branchR';
+        }
+            var plat = platforms.create(700 + moveX, i*120 + moveY, objName);
+            plat.body.immovable = true; 
+            var plank = wood.create(700 + moveX, (i*120)-100 + moveY, 'wood');
+           
+            plank.body.immovable = true;
+        }
+        
+        
+        
+    }
+    
+    
+    //  Make our game world 2000x2000 pixels in size (the default is to match the game size)
+    game.world.setBounds(0, 0, 800, 2000);
+
+    //beth
+     var bottomGround = platforms.create(0, game.world.height-30, 'ground2');
+    bottomGround.scale.setTo(2,2);
+    bottomGround.body.immovable = true;
+    /*
+    rocks = game.add.group();
+    for (var i = 0; i < 150; i++)
+    {
+        rock = platforms.create(game.world.randomX, game.world.randomY, 'rock');
+        
+        rock.scale.setTo(.25,.25);
+        
+        
+    }
+    rocks.enableBody = true;
+   */ //endbeth
+    
+    
+/*PAPER STUFF*/
+    paperG = game.add.group();
+    paperG.enableBody = true;
+    paper1 = paperG.create(98,1930,'paper');
+    paper2 = paperG.create(754,1520, 'paper');
+    paper3 = paperG.create(258,1280, 'paper');
+    paper4 = paperG.create(166,800, 'paper');
+    
+    paper1Screen = game.add.sprite(0,0,'screen1');
+    paper1Screen.visible = false;
+    paper2Screen = game.add.sprite(0,0,'screen2');
+    paper2Screen.visible = false;
+    paper3Screen = game.add.sprite(0,0,'screen3');
+    paper3Screen.visible = false;
+    paper4Screen = game.add.sprite(0,0,'screen4');
+    paper4Screen.visible = false;
+    adaScreen = game.add.sprite(0,0,'adaScreen');
+    adaScreen.visible = false;
+    
+    newBrG = game.add.group();
+    newBrG.enableBody = true;
+    
+    
+    cursors = game.input.keyboard.createCursorKeys();   
+    
+    /*PLAYER STUFF*/
+    
+    // The player and its settings
+    player = game.add.sprite(120, 0, 'dude');
+
+    //  We need to enable physics on the player
+    game.physics.arcade.enable(player);
+
+    //  Player physics properties. Give the little guy a slight bounce.
+    player.body.bounce.y = 0.4;
+    player.body.gravity.y = 300;
+    player.body.collideWorldBounds = true;
+
+    //  Our two animations, walking left and right.
+    player.animations.add('left', [2, 3], 10, true);
+    player.animations.add('right', [4, 5], 10, true);
+    player.animations.add('jump', [0,1,2,3,4,5,6,7], 10, true);
+
+    /* ADA STUFF */
+    bot = game.add.sprite(18, 0, 'ada');
+    game.physics.arcade.enable(bot);
+    bot.body.bounce.y = 0.4;
+    bot.body.gravity.y = 300;
+    bot.body.collideWorldBounds = true;
+    bot.animations.add('left', [5,6,7,8,9,10], 22, true);
+    bot.animations.add('right', [0,1,2,3,4], 22, true);
+    
+    newBridge = newBrG.create(120, 220,'bridge');
+    //game.physics.arcade.enable(newBridge);
+    newBridge.body.immovable = true;
+    //newBridge.visible = false;
+    newBar = newBrG.create(120,350,'bar');
+    newBar.body.immovable = true;
+    //newBar.visible = false;
+    newBrG.visible = false;
+    
+    
+    end = game.add.image(0,170,'end');
+    end.visible = false;
+    
+}
+    
+function update(){
+    if(player.y>=1800){
+        initialJump = true;  
+    }
+    if(initialJump){
+    game.physics.arcade.collide(player, platforms);
+    
+    game.physics.arcade.collide(wood.body,platforms);
+    //game.physics.arcade.collide(bot,newBridge);
+    //game.physics.arcade.collide(player,newBridge);
+    var paperOver1 = game.physics.arcade.overlap(player, paper1, display1, null, this);
+    var paperOver2 = game.physics.arcade.overlap(player, paper2, display2, null, this);
+    var paperOver3 = game.physics.arcade.overlap(player, paper3, display3, null, this);
+    var paperOver4 = game.physics.arcade.overlap(player, paper4, display4, null, this);
+    
+    game.physics.arcade.overlap(player, wood, collectWood, null, this);
+        }
+    
+    game.physics.arcade.collide(player, fallPlat);
+    game.physics.arcade.collide(bot, platforms);
+    if(paperOver1 == false){
+        paper1Screen.visible = false;
+    }else{
+    hasChecked1 = true;}
+    
+    if(paperOver2 == false){
+        paper2Screen.visible = false;
+    }else{
+    hasChecked2 = true;}
+    
+    if(paperOver3 == false){
+        paper3Screen.visible = false;
+    }else{
+        hasChecked3 = true;}
+    
+    if(paperOver4 == false){
+        paper4Screen.visible = false;
+    }else{
+        hasChecked4 = true;   
+    }
+    
+    if(tempWAda == false){
+        adaScreen.visible = false;
+    }
+    //make bridge fall
+    bridge.y = bar.y-120; 
+    
+    
+     if (cursors.up.isDown)
+    {
+        player.animations.play('jump',10,true);
+        player.body.velocity.y = -200;
+        game.camera.y=player.y-100;
+    }
+
+    if (cursors.left.isDown)
+    {
+        //game.camera.x -= 4;
+        player.animations.play('left',10,true);
+        player.x -= 4;
+        game.camera.y=player.y-100;
+    }
+    else if (cursors.right.isDown)
+    {
+        //game.camera.x += 4;
+        player.animations.play('right',10,true);
+        player.x += 4;
+        game.camera.y=player.y-100;
+    }else
+    {
+        //  Stand still
+        player.animations.stop();
+
+        player.frame = 4;
+        game.camera.y=player.y-100;
+        
+    }
+    if(hasChecked1&&hasChecked2&&hasChecked3&&hasChecked4&&(numPicked>=10)){
+        tempWAda = game.physics.arcade.overlap(player, bot, displayAdaScreen, null, this);
+        if(tempWAda){
+            withAda=true;   
+        }
+        if(withAda){
+            winning = true;
+            bot.body.velocity.x = 30;
+            if(bot.body.x>90){
+                game.physics.enable(newBrG);
+                newBrG.visible = true;
+                newBridge.body.immovable = true;
+                bot.body.velocity.x = 60;
+                newBar.body.immovable = true;
+                game.physics.arcade.collide(bot,newBar);
+                game.physics.arcade.collide(player,newBar);
+                if(player.body.x>=500){
+                    end.visible = true;
+                
+                }
+            }
+        }
+       }
+       
+}
+    
+function collectWood (player, plank) {
+    
+    // Removes the wood from the screen
+    plank.kill();
+
+    //  Add and update the score
+    numPicked += 1;
+    console.log(numPicked);
+    /*for (var i = 0; i < numPicked; i++){
+        var myWood = woods.create(i*10, 20, 'wood');   
+    }*/
+    
+    //displays end screen
+
+}
+function display1(player, paper){
+    var y = player.y;
+    paper1Screen.y=game.camera.y;
+    paper1Screen.visible = true;
+    
+}
+    
+function display2(player, paper){
+    var y = player.y;
+    paper2Screen.y=game.camera.y;
+    paper2Screen.visible = true;
+    
+}
+function display3(player, paper){
+    var y = player.y;
+    paper3Screen.y=game.camera.y;
+    paper3Screen.visible = true;
+    
+}
+function display4(player, paper){
+    var y = player.y;
+    paper4Screen.y=game.camera.y;
+    paper4Screen.visible = true;
+    
+}
+function displayAdaScreen(player, ada){
+    adaScreen.y = game.camera.y;
+    adaScreen.visible = true;
+}
+    
+function render() {
+
+    //game.debug.cameraInfo(game.camera, 32, 32)
+
+}
+    
+    
+
+
+</script>
+</body>
+</html>
