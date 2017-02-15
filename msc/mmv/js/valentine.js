@@ -318,6 +318,8 @@ function canvasApp() {
 
         theCanvas.classList.add("hidden");
         saveCanvas.classList.add("hidden");
+        editMore.classList.remove("hidden");
+
     }
     
     function eventMoreEdits( e ){
@@ -325,6 +327,7 @@ function canvasApp() {
         theCanvas.classList.remove("hidden");
         saveCanvas.classList.remove("hidden");
         editMore.classList.add("hidden");
+        
     }
     
     function eventAddMsg( e ){
