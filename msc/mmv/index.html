@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Make My Valentine?</title>
+
+    <!-- link in style sheets -->
+    <link href='https://fonts.googleapis.com/css?family=Dosis:400,500,600' rel='stylesheet' type='text/css'>
+    <link href="css/valentine.css" type="text/css" rel="stylesheet" />
+      
+    <!-- include JS scripts -->
+	<script src="js/modernizr.js"></script>
+	<script src="js/valentine.js"></script>
+      <link rel="shortcut icon" href="images/clips/romance28.png">
+</head>
+
+<body>
+<div class="container">
+    <div class="lilColumn">
+    
+        <div id="buttonBox">
+            <button id="addDec">Add a Dec!</button>&emsp;
+            <button id="remDec">Remove a Dec!</button>
+            <input  id="valMsg" type="text" placeholder="say something!"><br>
+            <button id="addMsg">Add a Message!</button>&emsp;
+            <button id="remMsg">Wait! I take it back!</button><br>
+            <button id="saveCanvas">Make it Mine!</button>
+            <button id="editMore" class="hidden">Edit some more!</button>
+        </div><!-- buttonBox-->
+    
+    </div> <!-- lil column -->
+    
+    <div class="bigColumn">
+        <!-- Canvas -->
+        <canvas id="myCanvas" width="500" height="300" class="center-block">
+            Your browser doesn't support Canvas.
+        </canvas>    
+        <!-- ^ End Canvas -->
+
+        <!-- Controls -->
+        <br><br>
+        <div id="canvasControls">
+        </div>
+        <!-- ^ End Controls -->
+
+    </div> <!-- big column -->
+    
+    <div class="lilColumn">
+      	<div id="justify">
+        <h2>Make my valentine?</h2>
+            
+        <p>Add some pictures. Add some text. Adjust the colors.</p>
+            <p>When you're done, click the button and save the resulting .png</p>
+            <p>It really is that simple. ;)</p>
+          
+        </div> <!-- justify -->
+       
+        <!-- Font Fix Section -->
+        <!-- We need to use each font on the page to use it on the canvas -->
+        <div id="fontFix">
+           <p> <span class="font-CS">Comic Sans</span>
+               <span class="font-Papyrus">Papyrus</span></p>
+        </div>
+        <!-- ^ End FontFix -->
+
+    
+    </div> <!-- lil column -->
+    
+    </div><!--container-->
+</body>
+</html>

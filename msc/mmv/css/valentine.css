@@ -1,0 +1,156 @@
+/*
+	canvas-animation.css 
+*/
+
+/* -------------------------------------------------------------- */
+/* Fonts */
+
+
+/* -------------------------------------------------------------- */
+/* Framing Styles */
+
+body {
+    /* color */
+    color: #ffffff; 
+    background-color: #111;
+    background-image: url(../images/hearts-seamless-background.jpg);
+    background-repeat:repeat;
+    overflow: hidden;
+    font-family: 'Dosis', sans-serif;
+}
+
+/* -------------------------------------------------------------- */
+/* Front Workaround -- Need to use fonts on the page to use on Canvas */
+
+#fontFix {
+    visibility: hidden;	   /* hide this section */
+}
+
+.font-CS {
+    font-family: 'Comic Sans MS', cursive, sans-serif; 
+}
+
+.font-Papyrus {
+    font-family: 'Papyrus'; 
+}
+
+
+/* -------------------------------------------------------------- */
+/* Canvas Styles */
+
+#myCanvas {
+   // border: 8px inset rgba(10,10,10,0.7);
+    margin-top:  15%;
+    width: 95%;
+    height: 300px;
+    
+}
+
+/* -------------------------------------------------------------- */
+/* Button Styles */
+
+#canvasControls {
+    text-align: center;
+}
+
+/* -------------------------------------------------------------- */
+/* Alignment Rules */
+
+.center-text {
+    text-align: center;
+}
+
+.center-block {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.lilColumn{
+    width: 25%;
+    height: 555px;
+    float: left;
+    margin: 0% 1%;
+    text-align: center;
+}
+
+.bigColumn{
+    float: left;
+    width: 45%;
+ 
+}
+
+button{
+    text-align: center;
+    border-radius: 20px;
+    padding: 3px 8px;
+    box-shadow: 2px 1px 1px #9a9a9a;
+    margin: 10px;
+}
+
+button:hover{
+    cursor: pointer;
+    
+}
+
+#buttonBox{
+    background-color: rgba(150,150,150, .6);
+    margin-top: 155px;
+    padding: 40px 0px 0px 0px;
+    height: 170px;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+
+#justify{
+    margin-top:29px;
+    color: rgba(193,3,93, 1);;
+    height: 500px;
+    overflow-y: auto;
+    background-color: rgba(150, 150, 150, .6);
+    padding: 8px;
+}
+
+#justify p{
+    text-align: left;
+}
+
+::-webkit-scrollbar{
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-track{
+    width: 20px;
+    background-color: rgba(55,55,55,.75);
+}
+
+::-webkit-scrollbar-thumb{
+    width: 8px;
+    background-color: rgba(233,3,133, .8);
+    border-radius: 18px;
+}
+
+::-webkit-scrollbar-button{
+    background-color: rgba(200,22,100,.7);
+    border-radius: 12px;
+}
+
+::-webkit-scrollbar-corner{
+    background-color: rgba(0,0,0,0);
+}
+
+.container{
+    height: 1000px;
+    width: 98%;
+    margin-left:auto;
+    margin-right: auto;
+    margin-top: 55px;
+}
+
+.hidden{
+    display: none;
+}
